@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="prime_bits",
-    version="1.0.0",
+    version="1.0.1",
     author="Zikithezikit",
     author_email="zikithezikit@example.com",
     description="A package to get prime numbers from bits.",
