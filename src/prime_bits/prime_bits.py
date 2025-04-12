@@ -1,4 +1,6 @@
 from random import getrandbits, randrange
+from multiprocessing import Process, Queue
+
 
 def get_prime(amount_of_bits: int, k=40) -> int:
     """Generate a prime number of exactly `amount_of_bits` using Miller-Rabin.
@@ -69,3 +71,48 @@ def is_prime(n: int, k=40) -> bool:
         else:
             return False  # Composite
     return True  # Probably prime
+
+
+
+def find_safe_prime_worker(amount_of_bits: int, k: int, result_queue: Queue):
+    """Worker function to find a safe prime and put it in the result queue."""
+    while True:
+        p = get_prime(amount_of_bits - 1, k)
+        safe_prime_candidate = 2 * p + 1
+        if is_prime(safe_prime_candidate, k):
+            result_queue.put(safe_prime_candidate)
+            break
+
+def get_safe_prime(amount_of_bits: int, k=40, num_processes=4) -> int:
+    """Generate a safe prime number using multiple processes.
+    
+    Args:
+        amount_of_bits (int): Number of bits for the safe prime.
+        k (int): Miller-Rabin rounds for primality testing.
+        num_processes (int): Number of processes to use.
+    
+    Returns:
+        int: A safe prime number with the specified bit length.
+    """
+    result_queue = Queue()
+    processes = []
+
+    # Start worker processes
+    for _ in range(num_processes):
+        process = Process(
+            target=find_safe_prime_worker,
+            args=(amount_of_bits, k, result_queue)
+        )
+        processes.append(process)
+        process.start()
+
+    # Wait for the first result
+    safe_prime = result_queue.get()
+
+    # Terminate all processes
+    for process in processes:
+        process.terminate()
+        process.join()
+
+    return safe_prime
+
