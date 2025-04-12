@@ -27,3 +27,28 @@ def lcm(a, b):
     if a == 0 or b == 0:
         return 0
     return abs(a * b) // gcd(a, b)
+
+def euler_totient(n):
+    """
+    Calculate Euler's Totient Function φ(n), which counts the integers from 1 to n
+    that are coprime with n.
+
+    Parameters:
+        n (int): The input integer.
+
+    Returns:
+        int: The value of φ(n).
+    """
+    if n <= 0:
+        return 0
+    result = n
+    p = 2
+    while p * p <= n:
+        if n % p == 0:
+            while n % p == 0:
+                n //= p
+            result -= result // p
+        p += 1
+    if n > 1:
+        result -= result // n
+    return result
