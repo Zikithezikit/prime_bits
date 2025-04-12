@@ -25,7 +25,7 @@ get_prime(1024) # 1024 -> number of bits in the number.
 
 - `get_prime` - You can see what that function does above. 👆
 
-In the current version `v1.0.3` I have added 2 additional functions.
+In the current version `v1.0.4` I have added 2 additional functions.
 
 - `get_safe_prime` - This function get's a safe prime number. (This uses multi-processing)
 - `is_prime` - This function checks if the number given is a prime. (This uses the Miller-Rabin primality test)
