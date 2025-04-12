@@ -1,6 +1,6 @@
 from random import getrandbits, randrange
 
-def get_prime(amount_of_bits: int, k=40):
+def get_prime(amount_of_bits: int, k=40) -> int:
     """Generate a prime number of exactly `amount_of_bits` using Miller-Rabin.
     Args:
         amount_of_bits (int): Number of bits for the prime.
@@ -29,7 +29,7 @@ def get_prime(amount_of_bits: int, k=40):
             return candidate
 
 
-def is_prime(n: int, k=40):
+def is_prime(n: int, k=40) -> bool:
     """Use the Miller-Rabin primality test to check if n is prime.
     Args:
         n (int): Number to test for primality.
