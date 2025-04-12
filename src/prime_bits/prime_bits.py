@@ -116,3 +116,20 @@ def get_safe_prime(amount_of_bits: int, k=40, num_processes=4) -> int:
 
     return safe_prime
 
+def get_next_prime(n: int, k=40) -> int:
+    """Find the next prime number greater than n.
+    
+    Args:
+        n (int): The starting number.
+        k (int): Miller-Rabin rounds for primality testing.
+    
+    Returns:
+        int: The next prime number greater than n.
+    """
+    if n < 2:
+        return 2
+
+    candidate = n + 1 if n % 2 == 0 else n + 2  # Start with the next odd number
+    while not is_prime(candidate, k):
+        candidate += 2  # Skip even numbers
+    return candidate
