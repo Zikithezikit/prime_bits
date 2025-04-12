@@ -1,0 +1,29 @@
+def gcd(a, b):
+    """
+    Calculate the Greatest Common Divisor (GCD) of two integers using the Euclidean algorithm.
+
+    Parameters:
+        a (int): First integer.
+        b (int): Second integer.
+
+    Returns:
+        int: The GCD of a and b.
+    """
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    """
+    Calculate the Least Common Multiple (LCM) of two integers.
+
+    Parameters:
+        a (int): First integer.
+        b (int): Second integer.
+
+    Returns:
+        int: The LCM of a and b.
+    """
+    if a == 0 or b == 0:
+        return 0
+    return abs(a * b) // gcd(a, b)
