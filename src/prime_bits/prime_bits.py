@@ -40,6 +40,13 @@ def is_prime(n: int, k=40) -> bool:
     Returns:
         bool: True if probably prime, False if composite.
     """
+    if not isinstance(n, int):
+        raise ValueError("The variable `n` must be an int.")
+    elif not isinstance(k, int):
+        raise ValueError("The variable `k` must be an int.")
+    elif k <= 0:
+        raise ValueError("The variable `k` must be a positive integer.")
+    
     if n in (2, 3):
         return True
     if n <= 1 or n % 2 == 0:
@@ -126,6 +133,13 @@ def get_next_prime(n: int, k=40) -> int:
     Returns:
         int: The next prime number greater than n.
     """
+    if not isinstance(n, int):
+        raise ValueError("The variable `n` must be an int.")
+    elif not isinstance(k, int):
+        raise ValueError("The variable `k` must be an int.")
+    elif k <= 0:
+        raise ValueError("The variable `k` must be a positive integer.")
+    
     if n < 2:
         return 2
 
