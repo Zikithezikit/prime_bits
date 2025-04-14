@@ -9,6 +9,11 @@ def gcd(a, b):
     Returns:
         int: The GCD of a and b.
     """
+    if not isinstance(a, int) or not isinstance(b, int):
+        raise TypeError("Both inputs must be integers.")
+    elif a < 0 or b < 0:
+        raise ValueError("Both inputs must be non-negative integers.")
+
     while b:
         a, b = b, a % b
     return a
@@ -24,6 +29,11 @@ def lcm(a, b):
     Returns:
         int: The LCM of a and b.
     """
+    if not isinstance(a, int) or not isinstance(b, int):
+        raise TypeError("Both inputs must be integers.")
+    elif a < 0 or b < 0:
+        raise ValueError("Both inputs must be non-negative integers.")
+
     if a == 0 or b == 0:
         return 0
     return abs(a * b) // gcd(a, b)
@@ -39,6 +49,11 @@ def euler_totient(n):
     Returns:
         int: The value of φ(n).
     """
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer.")
+    elif n < 0:
+        raise ValueError("Input must be a non-negative integer.")
+
     if n <= 0:
         return 0
     result = n
